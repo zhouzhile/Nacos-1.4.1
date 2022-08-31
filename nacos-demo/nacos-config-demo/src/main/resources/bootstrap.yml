@@ -1,0 +1,14 @@
+server:
+    port: 8070
+spring:
+    application:
+        name: nacos-config-demo
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 192.168.129.129:8849
+            config:
+                file-extension: yaml
+                server-addr: 192.168.129.129:8849
+    profiles:
+        active: prod
