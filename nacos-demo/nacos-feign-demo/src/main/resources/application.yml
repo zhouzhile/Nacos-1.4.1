@@ -1,0 +1,31 @@
+server:
+    port: 8091
+
+spring:
+    application:
+        name: nacos-feign-demo
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 192.168.129.129:8849 # Nacos服务端地址和端口
+                service: ${spring.application.name} # Nacos服务名，默认就是spring.application.name，可以不配置
+                group: DEFAULT_GROUP # 服务分组，默认为DEFAULT_GROUP(在命名空间的基础上，在某个命名空间内再次隔离-每个组相互隔离)
+                weight: 1 # 服务的权重，取值为1-100，数值越大权重越大
+                namespace: cbf32534-52a8-4858-88f1-7966ef1178d4 # 命名空间，用来进行服务分隔
+                cluster-name: DEFAULT #Nacos集群名称
+
+## SpringBoot默认的是info级别的日志，feign是debug级别，所以需要配置一下输出日志
+logging:
+  level:
+      com.alibaba.nacos.feign.consumer.feign: debug
+
+feign:
+  client:
+    config:
+        nacos-provider-demo:  # 指定Feign服务开启日志
+            loggerLevel: FULL
+            connectTimeout: 5000 # 连接超时时间
+            readTimeout: 10000 # 请求处理超时时间
+
+
+
