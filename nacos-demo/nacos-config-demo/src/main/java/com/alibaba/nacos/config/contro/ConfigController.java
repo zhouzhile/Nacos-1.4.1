@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("config")
 public class ConfigController {
 
-    @Value("${config.info}")
-    private String configInfo;
+    @Value("${user.name}")
+    private String userName;
 
-    @GetMapping("/info")
-    public String getInfo() {
-        return configInfo;
+    @GetMapping("/name")
+    public String getUserName() {
+        return userName;
     }
 }

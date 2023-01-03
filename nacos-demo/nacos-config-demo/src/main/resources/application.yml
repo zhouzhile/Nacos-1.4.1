@@ -1,0 +1,10 @@
+server:
+    port: 8060
+spring:
+    application:
+        name: nacos-config-demo # Nacos会根据服务名，拉取对应的配置文件
+    profiles:
+        # 在nacos中设置了${spring.application.name}-dev文件，我们设置激活dev,就会同事解析默认配置文件和${spring.application.name}-dev配置文件，且优先级更高
+        active: dev
+
+

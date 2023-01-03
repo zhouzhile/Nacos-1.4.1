@@ -1,8 +1,4 @@
-server:
-    port: 8070
 spring:
-    application:
-        name: nacos-config-demo
     cloud:
         nacos:
             discovery:
@@ -10,5 +6,24 @@ spring:
             config:
                 file-extension: yaml
                 server-addr: 192.168.129.129:8849
-    profiles:
-        active: prod
+                namespace: cbf32534-52a8-4858-88f1-7966ef1178d4  # 命名空间id
+                group: PRODUCT_CENTER # 分组名称
+                shared-configs:
+                  - dataId: shared-configs.properties
+                    refresh: true
+                    group: PRODUCT_CENTER
+                extension-configs[0]:
+                  data-id: extension-config.properties
+                  refresh: true
+                  group: DEFAULT_GROUP
+
+
+
+
+## 总结
+# 1.Nacos注册中心相关的配置，必须写到bootstrap.application或bootstrap.yml文件中
+# 2.Nacos中配置文件默认是properties后缀，如果需要改成其他后缀，需要在配置文件配置
+# 3.Nacos会根据服务名${spring.application.name}去配置中心找同名文件，作为默认配置文件，这个配置文件不需要后缀
+# 4.支持profile粒度的配置：${spring.application.name}-${profile}.${file-extension:properties}，再active指定的profile
+# 5.
+
