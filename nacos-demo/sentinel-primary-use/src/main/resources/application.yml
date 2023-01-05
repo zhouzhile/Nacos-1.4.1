@@ -1,0 +1,5 @@
+spring:
+    application:
+        name: sentinel-primary-use
+server:
+    port: 8050
